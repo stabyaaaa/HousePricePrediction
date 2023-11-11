@@ -1,29 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>House Price Prediction</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 20px;
         }
 
         h2 {
             text-align: center;
+            color: #007bff;
         }
 
         form {
-            max-width: 300px;
+            max-width: 400px;
             margin: 20px auto;
             padding: 20px;
-            background: #f9f9f9;
+            background: #fff;
             border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         label {
             font-weight: bold;
+            color: #333;
         }
 
         input[type="text"] {
@@ -37,36 +42,53 @@
 
         input[type="submit"] {
             width: 100%;
-            background-color: #4CAF50;
+            background-color: #28a745;
             color: white;
             padding: 12px 20px;
             margin: 8px 0;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #218838;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #007bff;
         }
     </style>
 </head>
 <body>
     <h2>House Price Prediction Form</h2>
-    <form action="/predict" method="post">
-        <label for="area">Area (in square feet):</label><br>
-        <input type="text" id="area" name="area" required><br><br>
+    <form action="/housePricePrediction" method="post">
+        <label for="rooms">Number of rooms:</label><br>
+        <input type="text" id="rooms" name="rooms" required><br><br>
+
+        <label for="type">Enter the type:</label><br>
+        <input type="text" id="type" name="type" required><br><br>
         
         <label for="bedrooms">Number of Bedrooms:</label><br>
-        <input type="text" id="bedrooms" name="bedrooms" required><br><br>
+        <input type="text" id="bed2" name="bed2" required><br><br>
         
         <label for="bathrooms">Number of Bathrooms:</label><br>
         <input type="text" id="bathrooms" name="bathrooms" required><br><br>
         
-        <label for="age">Age of the House (in years):</label><br>
-        <input type="text" id="age" name="age" required><br><br>
+        <label for="car">Enter no of car storage area:</label><br>
+        <input type="text" id="car" name="car" required><br><br>
+
+        <label for="longitude">Enter the longitude:</label><br>
+        <input type="text" id="long" name="long" required><br><br>
         
         <input type="submit" value="Predict Price">
+        
+        <div class="prediction">
+            Prediction: {{ prediction }}
+        </div>
     </form>
 </body>
 </html>
