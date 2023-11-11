@@ -55,9 +55,9 @@ def predict():
         # As the y was log-transformed during training, exponent transform the predicted value
         predicted_selling_price = np.exp(predicted_selling_price)
         
-        
+        rounded_predicted_selling_price = (round(predicted_selling_price[0]))
 
-        return render_template('index.html', prediction=f'The predicted selling price is {predicted_selling_price[0]}')
+        return render_template('index.html', prediction=f'The predicted selling price is {str(rounded_predicted_selling_price)}')
     except Exception as e:
         return render_template('index.html', prediction=f'Error: {str(e)}')
 
