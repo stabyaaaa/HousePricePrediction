@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from flask import Flask, request, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path = '/static')
 
 # Load the model and scaler
 model_path = "model/house_price.model"
@@ -31,7 +31,6 @@ def predict():
         car = int(request.form['car'])
         long = int(request.form['long'])
         print(f"Input values: rooms={rooms}, type={types}, bed2={bed2}, bathrooms={bathrooms}, car={car}, long={long}")   
-        # Add other input fields similarly
 
         # Create a sample dataframe
         sample = pd.DataFrame({
@@ -43,7 +42,6 @@ def predict():
             "long": [long],
 
             
-            # Add other input fields similarly
         })
 
         # Scale the sample using the same scaler used for X_train and X_set
