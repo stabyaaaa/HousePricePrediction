@@ -6,31 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>House Price Prediction</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}"> </head>
-<body>
-    <h2>House Price Prediction Form</h2>
+    <script>
+        // Function to hide the prediction message on page load
+        window.onload = function() {
+            var predictionElement = document.getElementById("prediction");
+            predictionElement.style.display = "none";
+        };
+    </script>
+<body><br><br>
+    <h1>House Price Prediction </h1>
+    <br><br>
     <form action="/housePricePrediction" method="post">
-        <label for="rooms">Number of rooms:</label><br>
-        <input type="text" id="rooms" name="rooms" required><br><br>
+        <label for="rooms" style="color: white;">Please Select the number of Rooms</label><br>
+        <select id="rooms" name="rooms" required>
+        <option value="">Please Select</option>
+        
+                {% for i in range(1, 101) %}
+            <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+    </select><br><br>
 
-        <label for="type">Enter the type:</label><br>
-        <input type="text" id="type" name="type" required><br><br>
-        
-        <label for="bedrooms">Number of Bedrooms:</label><br>
-        <input type="text" id="bed2" name="bed2" required><br><br>
-        
-        <label for="bathrooms">Number of Bathrooms:</label><br>
-        <input type="text" id="bathrooms" name="bathrooms" required><br><br>
-        
-        <label for="car">Enter no of car storage area:</label><br>
-        <input type="text" id="car" name="car" required><br><br>
+        <label for="type" style="color: white;">Select the type of House</label><br>
+        <select id="type" name="type" required>
+        <option value="Housing">Housing</option>
+        <option value="Unit">Unit</option>
+        <option value="Town">Town</option>
+        </select><br><br>
 
-        <label for="longitude">Enter the longitude:</label><br>
-        <input type="text" id="long" name="long" required><br><br>
         
+        <label for="bed2" style="color: white;">Number of Bedrooms:</label><br>
+        <select id="bed2" name="bed2" required>
+            <option value="">Please Select</option>
+                {% for i in range(1, 101) %}
+            <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+</select><br><br>
+        
+        
+        <label for="bathrooms" style="color: white;">Number of Bathrooms</label><br>
+        <select id="bathrooms" name="bathrooms" required>
+        <!-- <input type="text" id="bathrooms" name="bathrooms" required><br><br> -->
+        <option value="">Please Select</option>
+                {% for i in range(1, 101) %}
+            <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+    </select><br><br>
+        
+        <label for="car" style="color: white;">Enter no of car storage area</label><br>
+        <!-- <input type="text" id="car" name="car" required><br><br>
+         -->
+         <select id="car" name="car" required>
+        <!-- <input type="text" id="bathrooms" name="bathrooms" required><br><br> -->
+        
+        <option value="">Please Select</option>
+        {% for i in range(0, 101) %}
+    <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+    </select><br><br>
+
+        <!-- <label for="longitude">Enter the longitude:</label><br>
+        <input type="text" id="long" name="long" required><br><br> -->
+        <div class = submit>
         <input type="submit" value="Predict Price">
-        
-        <div class="prediction">
-            {{ prediction }}
+    </div>
+        <div class = "prediction" style="color: white;">    
+        {{ prediction }}
         </div>
         
 

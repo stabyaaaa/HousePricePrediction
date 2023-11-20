@@ -5,6 +5,8 @@ import numpy as np
 from flask import Flask, request, render_template
 
 app = Flask(__name__, static_url_path = '/static')
+#this maps type of house 
+type_mapping = {'Housing': 0, 'Unit': 1, 'Town': 2}
 
 # Load the model and scaler
 model_path = "model/house_price.model"
@@ -25,23 +27,22 @@ def predict():
     try:
         # Get input values from the user
         rooms = int(request.form['rooms'])
-        types = int(request.form['type'])
+        type_text = request.form['type'].capitalize()  # Convert to capitalize for consistency
         bed2 = int(request.form['bed2'])
         bathrooms = int(request.form['bathrooms'])
         car = int(request.form['car'])
-        long = int(request.form['long'])
-        print(f"Input values: rooms={rooms}, type={types}, bed2={bed2}, bathrooms={bathrooms}, car={car}, long={long}")   
+
+        # Map the text input to numerical value using the dictionary
+        type_numerical = type_mapping.get(type_text, 0)  # Default to 0 if type_text is not found
+        print(f"Input values: rooms={rooms}, type={type_text}, bed2={bed2}, bathrooms={bathrooms}, car={car}")
 
         # Create a sample dataframe
         sample = pd.DataFrame({
             "rooms": [rooms],
-            "type": [types],
+            "type": [type_numerical],
             "bed2": [bed2],
-            "bathroom" : [bathrooms],
-            "car" : [car],
-            "long": [long],
-
-            
+            "bathroom": [bathrooms],
+            "car": [car]
         })
 
         # Scale the sample using the same scaler used for X_train and X_set
@@ -55,7 +56,7 @@ def predict():
         
         rounded_predicted_selling_price = (round(predicted_selling_price[0]))
 
-        return render_template('index.html', prediction=f'The predicted selling price is {str(rounded_predicted_selling_price)}')
+        return render_template('index.html', prediction=f'The predicted selling price is ${str(rounded_predicted_selling_price)}')
     except Exception as e:
         return render_template('index.html', prediction=f'Error: {str(e)}')
 
