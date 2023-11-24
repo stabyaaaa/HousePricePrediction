@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>House Price Prediction</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}"> </head>
-    <script>
+    <!-- <script>
         // Function to hide the prediction message on page load
         window.onload = function() {
-            var predictionElement = document.getElementById("prediction");
+            var predictionElement = document.getElementByClass("prediction");
             predictionElement.style.display = "none";
         };
-    </script>
+    </script> -->
 <body><br><br>
     <h1>House Price Prediction </h1>
     <br><br>
@@ -20,11 +20,10 @@
         <label for="rooms" style="color: white;">Please Select the number of Rooms</label><br>
         <select id="rooms" name="rooms" required>
         <option value="">Please Select</option>
-        
                 {% for i in range(1, 101) %}
             <option value="{{ i }}">{{ i }}</option>
                 {% endfor %}
-    </select><br><br>
+        </select><br><br>
 
         <label for="type" style="color: white;">Select the type of House</label><br>
         <select id="type" name="type" required>
