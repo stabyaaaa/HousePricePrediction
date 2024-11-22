@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Report Link
 https://github.com/stabyaaaa/HousePricePrediction/blob/main/Final%20Report%20House%20Price%20Prediction.ipynb
 Slide Link :
@@ -13,5 +12,4 @@ https://github.com/stabyaaaa/HousePricePrediction/blob/main/Final%20Report%20Hou
 
 ### Overview
 This project used a `dataset` from Kaggle containing a different House with their data. The dataset is used commonly for regression models.
-
 
